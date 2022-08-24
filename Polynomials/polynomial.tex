@@ -1,0 +1,114 @@
+\documentclass[sexy]{scrartcl}
+\usepackage[utf8]{inputenc}
+\newcommand{\skipline}{\vskip 0.2in}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage[sexy]{C:/Users/brian/Documents/handouts/evan}
+\usepackage{hyperref}
+
+\newcommand{\ansbold}[1]{\mathbf{#1}}
+
+\title{Enloe MHS Polynomials Lecture}
+\author{Rishabh Bedidha and Brian Zhang}
+\date{February 2022}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+Polymomial problems are abundant in math, so it is important to be accquainted with the different kinds of questions you will encounter. This lecture will cover Vieta's relations and polynomial transformations, two of the most common kinds of polynomial problems.
+
+\section{Vieta's and Newton's sums}
+\begin{theorem}[Vieta's Formulas]
+Consider a polynomial of degree n:
+$$P(x)=a_{n}x^{n}+a_{n-1}x^{n-1}+...+a_{1}x+a_{0}$$ 
+(with the coefficients being real or complex numbers and $a_n \neq 0$) with complex roots $r_1, r_2, ..., r_n$. Vieta's formulas tell us that 
+
+\noindent
+$\begin{cases}
+\text{The sum of the roots}=r_{1}+r_{2}+\dots +r_{n-1}+r_{n}=-\frac {a_{n-1}}{a_{n}}=S_{1} \\ 
+(r_{1}r_{2}+r_{1}r_{3}+\cdots r_{1}r_{n})+(r_{2}r_{3}+r_{2}r_{4}+\cdots +r_{2}r_{n})+\cdots +r_{n-1}r_{n}={\frac {a_{n-2}}{a_{n}}}=S_{2}\\
+\quad \vdots \\ 
+\text{The product of the roots} =r_{1}r_{2}\dots r_{n}=(-1)^{n}{\frac {a_{0}}{a_{n}}}=S_n
+\end{cases}$
+\end{theorem}
+For example, the sum of the roots of the equation $x^3-6x^2+19x+12$ would be 6, and the product of the roots would be $-12$. 
+
+\begin{exercise}[2002 AMC 10A] Compute the sum of all the roots of $$(2x+3)(x-4)+(2x+3)(x-6)=0.$$
+\end{exercise}
+
+\begin{example}[2010 AMC 10A]
+The polynomial $x^3-ax^2+bx-2010$ has three positive integer roots. What is the smallest possible value of $a$?
+\end{example}
+\begin{soln}
+We're given that we have positive integer roots, but we don't have that much information about the roots. However, by Vieta's Formulas, we want to minimize the sum of the roots, $a$, and we know that the product of the roots are $2010$. Thus, we actually want to find the minimum possible sum of three integers that multiply to 2010. 
+
+2010 factors into $2\cdot 3\cdot 5\cdot 67$. It's clear that to minimize the sum, we must use the roots of $5, 6, 67$, so our answer is $5+6+67=\ansbold{78}$.
+\end{soln}
+
+$\textbf{Newton Sums}$ is a polynomial method used to find the sum of powers of roots efficiently using the coefficients of the polynomials:
+
+\begin{theorem}[Newton's Sums]
+Recall from earlier that $S_i$ is the value of $(-1)^{i}\frac{a_i}{a_n}$. Now, define $P_i$ to be the value of $r_1^i+r_2^i+ \dots + r_n^i$. For example, $P_3 = r_1^3+r_2^3+ \dots + r_n^3$. Now, Newtons sums gives us a formula for $P_n$ from the following equations.
+
+\noindent
+$\begin{cases}
+P_1 = S_1 \\
+P_2 = S_1P_1 - 2S_2 \\
+P_3 = S_1P_2 - S_2P_1 + 3S_3 \\
+P_4 = S_1P_3 - S_2P_2 + S_3P_1 - 4S_4 \\
+\vdots
+\end{cases}$
+\end{theorem}
+The proof of Newton's sums is by expanding the terms. 
+
+\begin{exercise}
+Prove the $n=2$ case of Newton's sums. That is, prove that $P_2 = S_1P_1 - 2S_2$. 
+\end{exercise}
+
+\begin{example}[2019 AMC 12A]
+Let $s_k$ denote the sum of the $\textit{k}$th powers of the roots of the polynomial $x^3-5x^2+8x-13$. In particular, $s_0=3$, $s_1=5$, and $s_2=9$. Let $a$, $b$, and $c$ be real numbers such that $s_{k+1} = a \, s_k + b \, s_{k-1} + c \, s_{k-2}$ for $k = 2$, $3$, $....$ What is $a+b+c$?
+\end{example}
+\begin{soln}
+Note that this is a direct application of the Newton Sums formula. We have that $s_{k+1}+S_{2}s_k+S_{1}s_{k-1}+S_0s_{k-2} = s_{k+1}+(-5)s_k+(8)s_{k-1}+(-13)s_{k-2}=0$. Rearranging yields that $a=5, b=-8, c=13$. Thus our answer is $5-8+13=\boxed{10}$
+\end{soln}
+
+\section{Exercises}
+\subsection{Vieta's formulas}
+\begin{exercise}[AMC 12B 2005/12]
+The quadratic equation $x^2+mx+n$ has roots twice those of $x^2+px+m$, and none of $m,n,$ and $p$ is zero. What is the value of $n/p$?
+\end{exercise} % ans: 8
+
+\begin{exercise}[AMC 12A 2007/21]
+The sum of the zeros, the product of the zeros, and the sum of the coefficients of the function $f(x)=ax^{2}+bx+c$ are equal. Their common value must also be which of the following?
+
+\noindent
+$\textrm{(A)}\ \textrm{the\ coefficient\ of\ }x^{2}~~~ \\ \textrm{(B)}\ \textrm{the\ coefficient\ of\ }x$ \\ $\textrm{(C)}\ \textrm{the\ y-intercept\ of\ the\ graph\ of\ }y=f(x)$ \\ $\textrm{(D)}\ \textrm{one\ of\ the\ x-intercepts\ of\ the\ graph\ of\ }y=f(x)$ \\ $\textrm{(E)}\ \textrm{the\ mean\ of\ the\ x-intercepts\ of\ the\ graph\ of\ }y=f(x)$
+\end{exercise} % ans: A
+
+\begin{exercise}[AMC 12A 2017/23]
+For certain real numbers $a$, $b$, and $c$, the polynomial\[g(x) = x^3 + ax^2 + x + 10\]has three distinct roots, and each root of $g(x)$ is also a root of the polynomial\[f(x) = x^4 + x^3 + bx^2 + 100x + c.\]What is $f(1)$?
+\end{exercise} % ans: -7007
+
+\begin{exercise}[2019 AMC 10A] 
+Let $p$, $q$, and $r$ be the distinct roots of the polynomial $x^3 - 22x^2 + 80x - 67$. It is given that there exist real numbers $A$, $B$, and $C$ such that\[\dfrac{1}{s^3 - 22s^2 + 80s - 67} = \dfrac{A}{s-p} + \dfrac{B}{s-q} + \frac{C}{s-r}\]for all $s\not\in\{p,q,r\}$. What is $\tfrac1A+\tfrac1B+\tfrac1C$?
+\end{exercise} % ans: 224
+
+\subsection{Newton's Sums}
+\begin{exercise}
+$x$, $y$, $z$ are numbers satisfying the equations $$\begin{cases} x+y+z=8 \\ x^2+y^2+z^2=30 \\ x^3+y^3+z^3=134 \end{cases}$$
+Find the value of $x, y, $ and $z$, if $x<y<z$. 
+\end{exercise} %x=1, y=2, z=5
+\begin{exercise} [AIME II 2003]
+Consider the polynomials $P(x) = x^{6} - x^{5} - x^{3} - x^{2} - x$ and $Q(x) = x^{4} - x^{3} - x^{2} - 1.$ Given that $z_{1},z_{2},z_{3},$ and $z_{4}$ are the roots of $Q(x) = 0,$ find $P(z_{1}) + P(z_{2}) + P(z_{3}) + P(z_{4}).$
+\end{exercise}
+\begin{exercise} [USAMO 1973]
+Determine all the roots, real or complex, of the system of simultaneous equations
+$$x+y+z=3,
+\\x^2+y^2+z^2=3,
+\\x^3+y^3+z^3=3$$.
+\end{exercise}
+\end{document}

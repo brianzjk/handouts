@@ -1,0 +1,160 @@
+\documentclass[sexy]{scrartcl}
+\usepackage[utf8]{inputenc}
+\newcommand{\skipline}{\vskip 0.2in}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage[sexy]{C:/Users/brian/Documents/handouts/evan}
+\usepackage{hyperref}
+
+\newcommand{\ansbold}[1]{\mathbf{#1}}
+
+\title{Enloe MHS Logarithms Lecture}
+\author{Brian Zhang}
+\date{March 2022}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+Logarithm problems are common in math, so it is important to be acquainted with the different kinds of questions you will encounter. This lecture will cover common tricks you can use to manipulate logarithms. These problems will often involve using these techniques in a clever manner to arrive at the answer. 
+
+\section{Basics}
+\begin{definition}[Logarithm]
+Consider numbers $a, b, $ and $x$, where $a$ and $x$ are positive numbers. Then, if $x^a=b$, then we have \[\log_x(b)=a.\]
+\end{definition}
+
+\begin{exercise} 
+Find the value of each of the following logarithms:
+\begin{enumerate}[label=\alph*]
+    \item $\log_2(64)$
+    \item $\log_{\frac13}(\frac19)$
+    \item $\log_5(\frac{1}{25})$
+\end{enumerate}
+\end{exercise}
+
+\begin{theorem}[Logarithm Addition and subtraction]
+If $x$ is a positive number, 
+\[\log_x(a)+\log_x(b)=\log_x(ab)\]
+and 
+\[\log_x(a)-\log_x(b)=\log_x\left(\frac{a}{b}\right).\]
+\end{theorem}
+
+\begin{theorem}[Logarithm Powers and Roots]
+If we add a logarithm $k$ times, then we will multiply the inside by itself $k$ times. Thus, we have
+\[k\cdot\log_x(a)=\log_x\left(a^k\right).\]
+Similarly, we have
+\[\frac{\log_x(a)}{k} = \log_x(\sqrt[k]a).\]
+\end{theorem}
+
+\begin{theorem}[Change of base]
+Sometimes, we will need to change the base of a logarithm. If $x$ and $k$ are both positive integers, then 
+\[\log_x(a)=\frac{\log_k(a)}{\log_k(x)}.\]
+You can choose $k$ to be any number that is most convenient for the problem.
+\end{theorem}
+
+\begin{exercise}[Reciprocal of a Logarithm]
+Prove that \[\frac{1}{\log_x(a)} = \log_x(a).\]
+\end{exercise}
+
+When the base of the logarithm is 10, we usually just write it as $\log$, and when the base of the logarithm is $e$, we write it as $\ln$ (This is called the natural logarithm).
+
+Alternatively, you can define $\ln(a)$ to be the area under the curve $y=\frac{1}{x}$ from $1$ to $a$, or we can write this as \[\ln(a)=\int_1^a \frac{1}{x} \text{ } dx.\]
+
+\section{Examples}
+
+\begin{example}[AMC 12B 2003/17]
+If $\log (xy^3) = 1$ and $\log (x^2y) = 1$, what is $\log (xy)$?:
+\end{example}
+\begin{soln}
+We can let $\log(x)=a$ and $\log(y)=b$. Then, by logarithm addition, we have from the two equations 
+\begin{align*}
+    a + 3b &= 1\\
+    2a + b &= 1\\ 
+\intertext{The value of $\log(xy)$ will be $a+b$. It is easy to solve these equations:}
+    a &= 1-3b\\
+    \implies 2(1-3b) + b &= 1 \\
+    \implies b &= \frac15\\
+    \implies a &= \frac25
+\end{align*}
+Thus, the desired value is $a + b = \frac15 + \frac25 = \ansbold{\frac35}$.
+\end{soln}
+
+\begin{example}
+What is the value of $a$ for which \[\frac1{\log_2a}+\frac1{\log_3a}+\frac1{\log_4a}=1?\]
+\end{example}
+\begin{soln}
+Note that by the logarithm reciprocal property, we have
+\begin{align*}
+    \frac1{\log_2a}+\frac1{\log_3a}+\frac1{\log_4a}&=1\\
+    \implies \log_a2+\log_a3+\log_a4&=1\\
+    \implies \log_a24&=1
+\end{align*}
+Thus, $a$ is equal to $\ansbold{24}$. 
+\end{soln}
+
+\begin{example}[AIME I 2000/9]
+The system of equations\begin{eqnarray*}\log_{10}(2000xy) - (\log_{10}x)(\log_{10}y) & = & 4 \\ \log_{10}(2yz) - (\log_{10}y)(\log_{10}z) & = & 1 \\ \log_{10}(zx) - (\log_{10}z)(\log_{10}x) & = & 0 \\ \end{eqnarray*}
+has two solutions $(x_{1},y_{1},z_{1})$ and $(x_{2},y_{2},z_{2})$. Find $y_{1} + y_{2}$.
+\end{example}
+
+\begin{soln}
+Since $\log ab = \log a + \log b$, we can reduce the equations to a more recognizable form:
+
+\begin{eqnarray*} -\log x \log y + \log x + \log y - 1 &=& 3 - \log 2000\\ -\log y \log z + \log y + \log z - 1 &=& - \log 2\\ -\log x \log z + \log x + \log z - 1 &=& -1\\ \end{eqnarray*}
+Let $a,b,c$ be $\log x, \log y, \log z$ respectively. Using SFFT, the above equations become 
+\begin{eqnarray*}(a - 1)(b - 1) &=& \log 2 \\ (b-1)(c-1) &=& \log 2 \\ (a-1)(c-1) &=& 1  \end{eqnarray*}
+Note that $-(3-\log(2000))$ is actually $-(3-(\log 1000 + \log2)) = \log 2$.
+
+From here, multiplying the three equations gives
+
+\begin{eqnarray*}(a-1)^2(b-1)^2(c-1)^2 &=& (\log 2)^2\\ (a-1)(b-1)(c-1) &=& \pm\log 2\end{eqnarray*}
+Dividing the third equation of the above system of equations from this equation, $b-1 = \log y - 1 = \pm\log 2 \Longrightarrow \log y = \pm \log 2 + 1$. This gives $y_1 = 20, y_2 = 5$, and the answer is $y_1 + y_2 = \ansbold{025}$.
+\end{soln}
+
+\section{Exercises}
+The problems are in approximate increasing difficulty. 
+\begin{problem}
+Evaluate
+\[(\log_23)(\log_34)(\log_45)\dots(\log_{2047}2048).\]
+\end{problem} 
+
+\begin{problem}[AMC 12A 2013/14]
+The sequence
+
+\noindent $\log_{12}{162}$, $\log_{12}{x}$, $\log_{12}{y}$, $\log_{12}{z}$, $\log_{12}{1250}$
+
+\noindent is an arithmetic progression. What is $x$?
+\end{problem} % ans = 270
+
+\begin{problem}[AIME II 2013/2]
+Positive integers $a$ and $b$ satisfy the condition\[\log_2(\log_{2^a}(\log_{2^b}(2^{1000}))) = 0.\]Find the sum of all possible values of $a+b$.
+\end{problem} % ans = 881
+
+\begin{problem}[AIME I 2020/2]
+There is a unique positive real number $x$ such that the three numbers $\log_8{2x}$, $\log_4{x}$, and $\log_2{x}$, in that order, form a geometric progression with positive common ratio. The number $x$ can be written as $\frac{m}{n}$, where $m$ and $n$ are relatively prime positive integers. Find $m + n$.
+\end{problem} % ans = 17
+
+\begin{problem}[AMC 12A 2008/16]
+The numbers $\log(a^3b^7)$, $\log(a^5b^{12})$, and $\log(a^8b^{15})$ are the first three terms of an arithmetic sequence, and the $12^\text{th}$ term of the sequence is $\log{b^n}$. What is $n$?
+\end{problem} % ans = 112
+
+\begin{problem}[AIME I 2002/6]
+The solutions to the system of equations
+
+$\log_{225}x+\log_{64}y=4$
+$\log_{x}225-\log_{y}64=1$
+are $(x_1,y_1)$ and $(x_2,y_2)$. Find $\log_{30}\left(x_1y_1x_2y_2\right)$.
+\end{problem} % ans = 12
+
+\begin{problem}[AIME I 2018/5]
+For each ordered pair of real numbers $(x,y)$ satisfying\[\log_2(2x+y) = \log_4(x^2+xy+7y^2)\]there is a real number $K$ such that\[\log_3(3x+y) = \log_9(3x^2+4xy+Ky^2).\]Find the product of all possible values of $K$.
+\end{problem} % ans = 189
+
+\begin{problem}[AMC 12A 2009/24]
+The tower function of twos is defined recursively as follows: $T(1) = 2$ and $T(n + 1) = 2^{T(n)}$ for $n\ge1$. Let $A = (T(2009))^{T(2009)}$ and $B = (T(2009))^A$. What is the largest integer $k$ for which\[\underbrace{\log_2\log_2\log_2\ldots\log_2B}_{k\text{ times}}\]is defined?
+\end{problem} % ans = 2013
+
+\end{document}
