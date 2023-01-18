@@ -1,0 +1,51 @@
+\documentclass[11pt]{scrartcl}
+\usepackage[sexy]{C:/Users/brian/Documents/handouts/evan}
+\newcommand{\vii}{v_{\text{i}}}
+\newcommand{\vff}{v_{\text{f}}}
+
+\title{Algebraic Manipulations}
+\author{Brian Zhang}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Factorizations}
+\begin{theorem}[Difference of Squares]
+\end{theorem}
+
+\begin{example}[Kinematic Equations]
+For motion with constant acceleration $a$, we have
+\begin{align*}
+a(t) &= a, \\
+v(t) &= v_0 + at, \\
+x(t) &= x_0 + v_0t + \frac12 at^2,
+\end{align*}
+where $x_0$ and $v_0$ are the intial position and velocity at $t=0$. Show that if an object has a displacement $d$ with constant acceleration $a$, then the intial and final velocities satisfy
+\[\vff^2 = \vii^2 + 2ad.\]
+\end{example}
+
+\begin{soln}
+Note that we can write
+\begin{align*}
+\vff^2 &= \vii^2 + 2ad \\ 
+\implies \vff^2 - \vii^2 &= 2ad \\
+\implies (\vff + \vii)(\vff - \vii) &= 2ad,
+\end{align*}
+where we get the last line by the difference of squares theorem shown above. But since $\vff$ is equal to $\vii + at$, we have
+\[(2 \vii + at)(\vii + at - \vii)  = 2ad\]
+Dividing both sides by $2a$, we get
+\[\vii t + \frac12 at^2 = d. \]
+But this is just the third kinematic equation listed above (where we set $x(t)-x_0=d$), so we are done. 
+\end{soln}
+
+\subsection{Partial Fractions}
+
+\section{Substitutions}
+
+\section{Symmetry}
+
+\section{Problems}
+
+
+\end{document}
